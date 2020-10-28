@@ -27,12 +27,13 @@
   file: path=/usr/local/src state=directory mode=0777
 
 - name: checkout bcg729 encoder/decoder
-  git: repo=https://github.com/BelledonneCommunications/bcg729.git
-    dest=/usr/local/src/bcg729
-    version=master
-    depth=50
-    accept_hostkey=yes
-    force=yes
+  git:
+    repo: https://github.com/BelledonneCommunications/bcg729.git
+    dest: /usr/local/src/bcg729
+    version: master
+    depth: 50
+    accept_hostkey: yes
+    force: yes
   become: no
 
 - name: build bcg729
@@ -42,7 +43,7 @@
   git:
     repo: https://github.com/sipwise/rtpengine.git
     dest: /usr/local/src/rtpengine
-    version: {{rtp_engine_version}}
+    version: "{{ rtp_engine_version }}"
     depth: 50
     accept_hostkey: yes
     force: yes
