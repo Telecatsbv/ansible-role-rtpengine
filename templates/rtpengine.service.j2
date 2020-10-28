@@ -19,7 +19,7 @@ ExecStartPre=/bin/sh -c 'systemctl set-environment LOCAL_IP=`curl -s -H "Metadat
 ExecStartPre=/bin/sh -c 'systemctl set-environment PUBLIC_IP=`curl -s -H "Metadata:true" http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2017-08-01&format=text`'
 ExecStart=/usr/local/bin/rtpengine --interface ${LOCAL_IP}!${PUBLIC_IP} \
 {% else %}
-ExecStart=/usr/local/bin/rtpengine --interface {{ ansible_default_ipv4.address }}!{{ inventory_hostname }} \
+ExecStart=/usr/local/bin/rtpengine --interface {{ ansible_default_ipv4.address }} \
 {% endif %}
 --listen-ng={{ rtp_engine_NG_port }} \
 --listen-udp={{ rtp_engine_udp_port }} \
