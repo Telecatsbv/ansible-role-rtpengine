@@ -52,6 +52,13 @@
 - name: build rtpengine
   shell: make with_transcoding=yes chdir=/usr/local/src/rtpengine/daemon
 
+- name: stop rtpengine
+  service:
+    name: rtpengine
+    enabled: yes
+    state: stopped
+  ignore_errors: yes
+
 - name: install rtpengine
   shell: cp /usr/local/src/rtpengine/daemon/rtpengine /usr/local/bin
 
@@ -65,12 +72,6 @@
 
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload
-
-- name: (re)start rtpengine
-  service:
-    name: rtpengine
-    enabled: yes
-    state: stopped
 
 - name: (re)start rtpengine
   service:
