@@ -70,6 +70,22 @@
     owner: root
     group: root
 
+- name: Create rtpengine rsyslog file
+  template:
+    src: rsyslog-rtpengine.conf.j2
+    dest: /etc/rsyslog.d/rsyslog-rtpengine.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Create rtpengine logrotate file
+  template:
+    src: logrotate-rtpengine.j2
+    dest: /etc/logrotate.d/logrotate-rtpengine
+    mode: 0644
+    owner: root
+    group: root
+
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload
 
